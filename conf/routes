@@ -1,0 +1,40 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+POST    /signup                     controllers.Application.signup()
+
+
+#signin
+GET    /signin                      controllers.signin.page()
+POST   /signin                      controllers.signin.enter()
+GET    /signin/id                   controllers.upload.error()
+GET	   /lpo                         controllers.signin.lop()
+GET   /logout						controllers.signin.logou()
+GET  /update/:id                    controllers.signin.ed(id:Long) 
+
+POST /update/:id                    controllers.update.upd(id: Long) 
+#upload
+POST    /upload                     controllers.se.upload()
+GET     /extr                       controllers.se.extr()
+
+#admin panel
+GET   /del/:id                     controllers.update.del(id:Long)
+
+#panel
+GET   /redir                       controllers.paging.pag(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
+
+#other code
+GET    /upy                          controllers.upload.op()
+POST   /upy                          controllers.upload.up()
+
+# Displays a page to send a reset email given the user's email.
+GET     /reset/ask                  controllers.account.Reset.ask()
+POST    /reset/ask                  controllers.account.Reset.runAsk()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+

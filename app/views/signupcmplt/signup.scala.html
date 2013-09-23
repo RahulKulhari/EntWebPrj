@@ -1,0 +1,13 @@
+@(user: User)
+@import helper._
+@import helper.twitterBootstrap._
+@main("EXTR Show"){
+
+
+			<div class="container-narrow">
+
+      
+      <fieldset>
+            <legend><b >@user.getEmail()</b> ! Your account has been created. Now  <a href="@routes.signin.page" >Sign in</a></legend>
+
+}

@@ -1,0 +1,125 @@
+@(currentPage: com.avaje.ebean.Page[User], currentSortBy: String, currentOrder: String, currentFilter: String)
+
+@****************************************
+* Helper generating navigation links    *
+****************************************@
+@link(newPage:Int, newSortBy:String) = @{
+    
+    var sortBy = currentSortBy
+    var order = currentOrder
+    
+    if(newSortBy != null) {
+        sortBy = newSortBy
+        if(currentSortBy == newSortBy) {
+            if(currentOrder == "asc") {
+                order = "desc"
+            } else {
+                order = "asc"
+            }
+        } else {
+            order = "asc"
+        }
+    }
+    
+    // Generate the link
+    routes.paging.pag(newPage, sortBy, order, currentFilter)
+    
+}
+
+
+
+@header(key:String, title:String) = {
+   
+        
+        <a class="@key.replace(".","_") header @if(currentSortBy == key) @{if(currentOrder == "asc") "headerSortDown" else "headerSortUp"}" href="@link(0,key)">@title</a>
+    
+  
+}
+
+
+@main("welcome to EXTR ") {
+
+<div class="container-narrow">
+
+      
+      <div class="masthead">
+		<ul class="nav nav-pills pull-right">
+
+			
+			<li><a href="@routes.signin.logou">Logout</a></li>
+		</ul>
+		<h3 class="muted">
+			welcome admin</b>
+		</h3>
+	</div>
+	<hr>
+            <h1>  user found</h1>
+            @if(currentPage.getTotalRowCount == 0) {
+        
+        <div class="well">
+            <em>Nothing to display</em>
+        </div>
+        
+    } else {
+           <table border="1">
+           <tr>
+           <th>@header("name","name")</th>
+           <th>@header("email","email")</th>
+           <th>@header("","")</th>
+            </tr>
+            
+            <tbody>
+
+                @for(user <- currentPage.getList) {
+                    <tr>
+                        <td><a href="">@user.name</a></td>
+                        <td>
+                            @user.getEmail()
+                        </td>
+                        
+                    
+                
+                        <td><a href="@routes.update.del(user.id)" class="btn success" style="color:#008000; ">delete</a></td>
+                        </tr>}
+                        </tbody>
+                        </table>
+            
+            
+            
+      
+
+   
+    
+    <div id="pagination" class="pagination">
+            <ul>
+                @if(currentPage.hasPrev) {
+                    <li class="prev">
+                        <a href="@link(currentPage.getPageIndex - 1, null)">&larr; Previous</a>
+                    </li>
+                } else {
+                    <li class="prev disabled">
+                        <a>&larr; Previous</a>
+                    </li>
+                }
+               @for(i <- 0 until currentPage.getTotalPageCount()){
+            <li><a  href="@link(i, null)">@(i+1)</a></li>
+        }
+                @if(currentPage.hasNext) {
+                    <li class="next">
+                        <a href="@link(currentPage.getPageIndex + 1, null)">Next &rarr;</a>
+                    </li>
+                } else {
+                    <li class="next disabled">
+                        <a>Next &rarr;</a>
+                    </li>
+                }
+            </ul>
+        </div>
+      
+	 </div>
+	 
+    
+    }
+   
+  
+}

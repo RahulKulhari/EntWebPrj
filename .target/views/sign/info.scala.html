@@ -1,0 +1,71 @@
+@(user: User) 
+
+@import helper._ 
+@import helper.twitterBootstrap._
+
+
+
+@main("hello") {
+
+<script>
+$(document).ready(function(){
+	$("p").hide();
+	$("input").hide();
+  $("button").click(function(){
+    $("p").toggle();
+    $("input").toggle();
+  });
+});
+</script>
+
+
+
+<div class="container-narrow">
+	
+	<div class="masthead">
+		<ul class="nav nav-pills pull-right">
+
+			<li><a href="@routes.signin.ed(user.id)">edit User</a></li>
+			<li><a href="@routes.signin.logou">Logout</a></li>
+		</ul>
+		<h3 class="muted">
+			welcome <b>@user.getEmail()</b>
+		</h3>
+	</div>
+	<hr></hr>
+	<div>@flash.map {
+    case (key, value) => {
+        <p class="error">
+            <span ><b>@value</b></span>
+        </p>
+    }
+}</div>
+
+<!-- 	<div class="jumbotron"> -->
+<!-- 		<p allign="center"> -->
+<!-- 			@form(action = routes.se.upload, 'enctype -> "multipart/form-data") { -->
+			
+			
+			
+<!-- 			<input type="file" name="picture" accept="application/pdf" multiple="multiple"><br/>  -->
+<!-- 			<input type="submit" value="upload and extract">  -->
+<!-- <!-- 			<a  href="@routes.se.extr">extract entities</a>  -->
+<!-- 			} -->
+<!-- 		</p> -->
+<!-- 	</div> -->
+	<button>file upload</button>
+	<p allign="center">
+			@form(action = routes.se.upload, 'enctype -> "multipart/form-data") {
+			
+			
+			
+			<input type="file" name="picture" accept="application/pdf" multiple="multiple"><br/> 
+			<input type="submit" value="upload and extract"> 
+
+			}
+		</p>
+	
+</div>
+
+
+}

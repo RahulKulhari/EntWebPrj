@@ -1,0 +1,57 @@
+@(signupform: Form[User])
+
+@import helper._ 
+@import helper.twitterBootstrap._
+@main("welcome to EXTR ") {
+
+<div class="container-narrow">
+
+      
+      <fieldset>
+            <legend>Sign up or <a href="@routes.signin.page" >Sign in</a></legend>
+      
+      @helper.form(action=routes.Application.signup()){
+      @if(signupform.hasGlobalErrors) {
+        <p class="error">
+            <span><b>@signupform.globalError.message</b></span>
+        </p>
+    }else{
+      @inputText(
+      				signupform("email"),
+      				'_label->"Enter email",
+      				'_help  ->  "Enter your Email")
+     
+      				
+      @inputText(
+      				signupform("name"),
+      				'_label->"Enter name",
+      				'_help  ->  "Your Name")
+      				
+      @inputPassword(
+      				signupform("password"),
+      				'_label->"Enter Password",
+      				'_help -> "Your Password")
+      				
+      @inputPassword(
+      				signupform("repassword"),
+      				'_label->"Enter Password again")
+      				
+      
+      				
+      <input class="btn  btn-large " type="submit" value="signup" />
+      
+      
+      
+      }}
+      </fieldset>
+      
+
+	
+    
+      
+	 </div>
+	 
+    
+   
+    
+}

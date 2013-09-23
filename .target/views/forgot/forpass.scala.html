@@ -1,0 +1,36 @@
+@(askForm: Form[controllers.account.Reset.AskForm])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+
+@main("Reset") {
+
+    <div class="container-narrow">
+				
+           <h3>@Messages("Resetpassword")</h3>
+
+    
+
+    @form(action=controllers.account.routes.Reset.runAsk()) {
+
+        <fieldset >
+            @inputText(
+            askForm("email"),
+            'placeholder -> "email",
+            '_label -> null)
+       </fieldset>
+
+        <div >
+            <input type="submit" class="btn" value="set">
+
+            <a href="@routes.Application.index()" class="btn" style="color:#008000; background-color: #008000;" >Go Back</a>
+        </div> 
+    }
+    </div>
+
+
+}
+
+
+

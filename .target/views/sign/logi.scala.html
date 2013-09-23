@@ -1,0 +1,50 @@
+@(signinform : Form[signin.Login])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("welcome to EXTR ") {
+
+
+<div class="container-narrow">
+				<fieldset>
+            <legend>Sign in or <a href="@routes.Application.index()" >Sign up</a></legend>
+      
+      @helper.form(action=routes.signin.enter()){
+      
+      @if(signinform.hasGlobalErrors) {
+        <p class="error">
+            <span><b>@signinform.globalError.message</b></span>
+        </p>
+    }else{
+    @flash.map {
+    case (key, value) => {
+        <p class="error">
+            <span ><b>@value</b></span>
+        </p>
+    }
+}
+}
+      
+      
+      @inputText(
+      				signinform("email"),
+      				'_label->"Enter email",
+      				'_help  ->  "Enter your Email")
+      				
+      				
+      @inputPassword(
+      				signinform("password"),
+      				'_label->"Enter Password",
+      				'_help  ->  "Enter Password")
+      				
+      				
+   <input class="btn  btn-large " type="submit" value="signin" />
+   
+   <a href="@controllers.account.routes.Reset.ask()" class="btn btn-large" style="color:#008000; background-color: #00800;" >Forget Password</a>
+
+   }
+   </fieldset>
+   </div>
+
+}

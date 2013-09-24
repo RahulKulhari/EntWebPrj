@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -26,9 +27,14 @@ public class User extends Model {
 	public Long id;
 	
 	
+	@Transient
+	public String uuid=UUID.randomUUID().toString();
+    
+    
+	
 
-    
-    
+
+
 	@Required
 	public String name;
 	
@@ -69,7 +75,7 @@ public class User extends Model {
 		return email;
 	}
 
-
+	
 
 	public void setEmail(String email) {
 		this.email = email;

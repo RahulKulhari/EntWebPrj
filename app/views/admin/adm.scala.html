@@ -1,4 +1,4 @@
-@(currentPage: com.avaje.ebean.Page[User], currentSortBy: String, currentOrder: String, currentFilter: String)
+@(currentPage: com.avaje.ebean.Page[User], currentSortBy: String, currentOrder: String, currentFilter: String,ud: String)
 
 @****************************************
 * Helper generating navigation links    *
@@ -44,16 +44,16 @@
       
       <div class="masthead">
 		<ul class="nav nav-pills pull-right">
-
-			
+			<li><a href="" >Home</a></li>
+			<li><a href="@routes.paging.extrad(ud)" >Extr resume</a></li>
 			<li><a href="@routes.signin.logou">Logout</a></li>
 		</ul>
 		<h3 class="muted">
 			welcome admin</b>
 		</h3>
 	</div>
-	<hr>
-            <h1>  user found</h1>
+	<hr><div  align="center">
+            <h1> @currentPage.getTotalRowCount() user found</h1>
             @if(currentPage.getTotalRowCount == 0) {
         
         <div class="well">
@@ -61,7 +61,10 @@
         </div>
         
     } else {
-           <table border="1">
+           
+           
+           
+           <table border="1" >
            <tr>
            <th>@header("name","name")</th>
            <th>@header("email","email")</th>
@@ -71,6 +74,7 @@
             <tbody>
 
                 @for(user <- currentPage.getList) {
+	
                     <tr>
                         <td><a href="">@user.name</a></td>
                         <td>
@@ -114,12 +118,14 @@
                     </li>
                 }
             </ul>
-        </div>
       
 	 </div>
-	 
     
     }
-   
+      
+      
+	 </div>
+	
+   </div>
   
 }

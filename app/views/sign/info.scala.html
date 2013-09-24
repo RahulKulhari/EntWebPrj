@@ -9,10 +9,10 @@
 
 <script>
 $(document).ready(function(){
-	$("p").hide();
+	
 	$("input").hide();
   $("button").click(function(){
-    $("p").toggle();
+    
     $("input").toggle();
   });
 });
@@ -53,8 +53,8 @@ $(document).ready(function(){
 <!-- 			} -->
 <!-- 		</p> -->
 <!-- 	</div> -->
-	<button>file upload</button>
-	<p allign="center">
+	<div><button>file upload</button>
+	
 			@form(action = routes.se.upload, 'enctype -> "multipart/form-data") {
 			
 			
@@ -63,7 +63,7 @@ $(document).ready(function(){
 			<input type="submit" value="upload and extract"> 
 
 			}
-		</p>
+		</div>
 	
 </div>
 

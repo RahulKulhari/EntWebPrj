@@ -2,6 +2,9 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+
+import models.User;
+
 import org.apache.tika.exception.TikaException;
 import org.xml.sax.SAXException;
 
@@ -10,6 +13,7 @@ import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
+import views.html.sign.info;
 
 public class se extends Controller {
 
@@ -33,8 +37,10 @@ public class se extends Controller {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			return ok(Json.toJson(fileName+" has been uploaded"));//fileName + name); 
+			User u=User.findByEmail(session("email"));
+			flash("file", "file has been uploaded");
+			session("email",u.getEmail());
+			return ok(info.render(u));//ok(Json.toJson(fileName+" has been uploaded"));//fileName + name); 
 		} else {
 			flash("error", "Missing file");
 			return redirect(routes.Application.index());

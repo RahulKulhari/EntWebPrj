@@ -51,26 +51,34 @@ public class signin extends Controller {
 			return badRequest(logi.render(loginForm));// errorsAsJson());
 		}
 		
-		if(loginForm.get().email.equals("admin@admin.com") ) {
-			
-//			Class.forName("com.mysql.jdbc.Driver");
-//			Connection con=DriverManager.getConnection(jdbc:Mysql://localhost:306)
-			
-			List<User> data = new Finder(Long.class, User.class).all();
-			session("admin",loginForm.get().email);
-			
-			return redirect(routes.paging.pag(0, "name", "asc", ""));
-			//return ok(adm.render(data));
-			
-			//return TODO;
-        }
-
 		Login login = loginForm.get();
 		
 		
 		
 		User user = User.findByusernameAndPassword(login.email,
 				login.password);
+		
+		if(login.email.equals("admin@admin.com") ) {
+			
+//			Class.forName("com.mysql.jdbc.Driver");
+//			Connection con=DriverManager.getConnection(jdbc:Mysql://localhost:306)
+			
+			//List<User> data = new Finder(Long.class, User.class).all();
+			session("admin",loginForm.get().email);
+			
+//			int page=0;
+//			String sortBy="name";
+//			String order="asc";
+//			String filter="";
+//			return ok(adm.render(User.page(page, 2, sortBy, order, filter), sortBy,
+//					order, filter));
+			return redirect(routes.paging.pag(0, "name", "asc", ""));
+			//return ok(adm.render(data));
+			
+			//return TODO;
+        }
+
+		
 
 		if (user == null) {
 

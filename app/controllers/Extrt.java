@@ -97,7 +97,7 @@ public class Extrt {
 
 	public static void files(String st, String fname) throws IOException {
 		FileWriter fw = new FileWriter(
-				"/home/rahul/Documents/" + fname
+				"/home/rahul/Documents/Ent-play-extrcnt/" + fname
 						+ ".txt", true);
 		
 		BufferedWriter bufferWritter = new BufferedWriter(fw);

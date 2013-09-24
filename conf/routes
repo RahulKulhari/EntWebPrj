@@ -27,7 +27,7 @@ GET   /del/:id                     controllers.update.del(id:Long)
 #panel
 GET   /admin/                     controllers.paging.pag(p:Int ?= 0 , s ?= "name", o ?= "asc", f ?= "")
 GET   /admin/extr/:id                controllers.paging.extrad(id:String)
-
+POST  /admin/extrcont                controllers.Clustr_Extr.mthd()
 
 
 

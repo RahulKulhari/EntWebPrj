@@ -13,9 +13,11 @@ POST   /signin                      controllers.signin.enter()
 GET    /signin/id                   controllers.upload.error()
 GET	   /lpo                         controllers.signin.lop()
 GET   /logout						controllers.signin.logou()
-GET  /update/:id                    controllers.signin.ed(id:Long) 
 
+#update in databse
+GET  /update/                    controllers.signin.ed(id:Long) 
 POST /update/:id                    controllers.update.upd(id: Long) 
+
 #upload
 POST    /upload                     controllers.se.upload()
 GET     /extr                       controllers.se.extr()
@@ -26,7 +28,7 @@ GET   /del/:id                     controllers.update.del(id:Long)
 
 #panel
 GET   /admin/                     controllers.paging.pag(p:Int ?= 0 , s ?= "name", o ?= "asc", f ?= "")
-GET   /admin/extr/:id                controllers.paging.extrad(id:String)
+GET   /admin/extr/               controllers.paging.extrad(id:String)
 POST  /admin/extrcont                controllers.Clustr_Extr.mthd()
 
 

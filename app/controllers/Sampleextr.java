@@ -8,13 +8,13 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -54,22 +54,29 @@ public class Sampleextr {
 			int eof = F_Name.lastIndexOf('.');
 			F_Name = F_Name.substring(0, eof);
 			Logger.info(" :->" + F_Name + ":=> " + F_Name);
-			String s1 = contentEx(value); // get plain text from this
+			String s1 = contentEx(value);
+			
 			s1 = s1.replaceAll("\\s+", " ");
 
-			for (int i = 0; i < sdata.length; i++) {
+			
+			int i=0;
+			while(i<sdata.length){
 				String t = classifier.classifyWithInlineXML(s1);
 				
 				TAG_REGEX = Pattern.compile("<" + sdata[i] + ">(.+?)</"
 						+ sdata[i] + ">");
-				t = Arrays.toString(getTagValues(t).toArray());
-				t = t.replaceAll("\\[", "").replaceAll("\\]", "");
-				t = t.replace(", ", ",");
 				
-				String out_arr[] = t.split(",");
-				for (String t1 : out_arr) {
-					files(t1, F_Name);
+				Set<String> s=getTagValues(t);
+				
+				Iterator<String> it=s.iterator();
+				
+				while(it.hasNext()){
+					
+					files(it.next(),F_Name);
+					
 				}
+				
+				i++;
 
 			}
 		}
@@ -77,9 +84,12 @@ public class Sampleextr {
 	}
 
 	private static Set<String> getTagValues(String str) {
+		
 		final Set<String> tagValues = new HashSet<String>();
+		
 		final Matcher matcher = TAG_REGEX.matcher(str);
 		while (matcher.find()) {
+			
 			tagValues.add(matcher.group(1));
 		}
 

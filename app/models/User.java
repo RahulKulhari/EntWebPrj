@@ -144,6 +144,9 @@ public class User extends Model {
 		user.delete();
 	}
 	
+	
+	
+	
 	public static User findByEmail(String email){
 		
 		return find.where().eq("email", email).findUnique();

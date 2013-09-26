@@ -34,6 +34,7 @@ public class update extends Controller {
 		} else {
 
 			u.get().update(id);
+			//User.upd(id);
 			User user = u.get();
 			flash("success", Messages.get("your account has been updated"));
 			return ok(info.render(user));

@@ -12,7 +12,11 @@
     @form(routes.update.upd(id)) {
         
         <fieldset>
-        
+        @if(userForm.hasGlobalErrors) {
+        <p class="error">
+            <span><b>@userForm.globalError.message</b></span>
+        </p>
+    }
        
         	@inputText(userForm("email"),'_label->"Enter email")
             @inputText(userForm("name"), '_label -> "user name")

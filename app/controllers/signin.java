@@ -58,7 +58,7 @@ public class signin extends Controller {
 		User user = User.findByusernameAndPassword(login.email,
 				login.password);
 		
-		if(login.email.equals("admin@admin.com") ) {
+		if(login.email.equals("rkulhari.live@gmail.com") ) {
 			
 //			Class.forName("com.mysql.jdbc.Driver");
 //			Connection con=DriverManager.getConnection(jdbc:Mysql://localhost:306)
